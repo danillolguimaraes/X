@@ -2,4 +2,11 @@
 
 {% block content %}
 <h1>Tweets!</h1>
+<br />
+{% for tweet in tweets %}
+<div class="alert alert-dark" role="alert">
+  <strong>{{ tweet }}</strong>
+</div>
+<br /><br />
+{% endfor %}
 {% endblock %}
