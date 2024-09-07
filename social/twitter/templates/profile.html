@@ -39,8 +39,25 @@
           </p>
         </div>
       </div>
+      <br />
+
+      <!--seguir e deixar de seguir-->
+      <form method="POST">
+        {% csrf_token %}
+        {% if profile in user.profile.follows.all %}
+        <button class="btn btn-outline-danger" name="follow" value="unfollow" type="submit">Deixar de Seguir
+          @{{profile.user.username|lower}}</button>
+        {% else %}
+        <button class="btn btn-outline-success" name="follow" value="follow" type="submit">Seguir
+          @{{profile.user.username|lower}}</button>
+        {% endif %}
+
+      </form>
+      <br />
+
 
     </div><!--col-4-->
+
   </div>
 </div>
 
