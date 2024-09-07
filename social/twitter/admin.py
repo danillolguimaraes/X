@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-from .models import Profile #importando o perfil que criamos
+from .models import Profile, Tweet #importando o perfil que criamos
 
 # Removendo Groups do Painel Admin
 
@@ -31,3 +31,7 @@ admin.site.register(User, UserAdmin)
 #   model = Profile vamos ter que subir essa classe por causa da herança
 
 # agora voltamos nos usuário que removemos os campos e deixamos o nome e vamos adicionar inlines
+
+# registro de tweets
+
+admin.site.register(Tweet)
