@@ -4,18 +4,22 @@
 {% if profile %}
 
 <div class="container text-center">
-
   <div class="row">
     <div class="col-8">
       <h1>{{ profile.user.username }}'s' Perfil</h1>
       <br />
       {% if tweets %}
       {% for tweet in tweets %}
-      <div class="alert alert-dark" role="alert">{{ tweet }}</div><br />
+      <div class="alert alert-dark" role="alert">
+        <strong>{{ tweet.body }}</strong><br />
+        <small class="text-muted">
+          ({{ tweet.created_at }}) por
+          @{{ tweet.user.username }}
+        </small>
+      </div><br /><br />
       {% endfor %}
       {% endif %}
-    </div><!--col-8-->
-
+    </div>
 
     <div class="col-4">
       <br /><br /><br />
