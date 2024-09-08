@@ -14,7 +14,7 @@
         <strong>{{ tweet.body }}</strong><br />
         <small class="text-muted">
           ({{ tweet.created_at }}) por
-          @{{ tweet.user.username }}
+          @{{ tweet.user.username|lower }}
         </small>
       </div><br /><br />
       {% endfor %}
