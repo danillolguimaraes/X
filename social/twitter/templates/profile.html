@@ -23,6 +23,11 @@
 
     <div class="col-4">
       <br /><br /><br />
+      <!--image perfil-->
+      {% if profile.profile_image %}
+      <img src="{{ profile.profile_image.url }}">
+      {% endif %}
+      <br /><br />
       <!--bootstra card-->
       <div class="card">
         <h5 class="card-header"><strong>Seguindo</strong></h5>
@@ -66,9 +71,11 @@
       </form>
       <br />
 
-
+      <!--Checar o usuário correto (logado)-->
+      {% if request.user.id == profile.user.id %}
+      <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Atualizar Perfil</a>
+      {% endif %}
     </div><!--col-4-->
-
   </div>
 </div>
 
