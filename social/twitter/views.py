@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Profile, Tweet
-from .forms import TweetForm
+from .forms import TweetForm, SignUpForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+
 
 def home(request):
     if request.user.is_authenticated:
@@ -49,3 +53,45 @@ def profile(request, pk):
     else:
         messages.success(request, ("Você deve estar logado para visualizar esta página..."))
         return redirect('home')
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, ("Você entrou com sucesso no X!"))
+            return redirect('home')
+        else:
+            messages.success(request, ("Algo deu errado com a sua entrada no X, revise o nome de usuário e a senha!"))
+            return redirect('login')
+    else:
+        return render(request, 'login.html', {})
+
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("Você saiu com sucesso, é uma pena, é um prazer ter você aqui!"))
+    return redirect('home')
+
+# registro de usuarios
+
+def register_user(request):
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            #first_name = form.cleaned_data['first_name']
+            #last_name = form.cleaned_data['last_name']
+            #email = form.cleaned_data['email']
+            # log in user
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ("Você se registrou com sucesso!"))
+            return redirect('home')
+            
+    return render(request, 'register.html', {'form': form})

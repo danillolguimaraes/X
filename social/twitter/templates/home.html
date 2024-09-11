@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load static %} <!-- Esta linha deve ser adicionada -->
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <div class="container text-center">
   <div class="row">
     <div class="col-8">
@@ -29,4 +30,32 @@
       </form>
       {% endif %}
     </div><!--col-4-->
+    {% else %}
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12">
+          <h1 style="font-family: impact;">
+            <br />
+            Bem
+            vindos ao X!
+          </h1>
+          <br />
+          <!-- Renderizar a imagem -->
+          <img src="{% static 'images/projectXTESTE.png' %}" class="x-center" alt="Imagen centro index">
+          <br />
+        </div>
+      </div>
+    </div>
+    <footer>
+      <br /><br />
+      <div style="margin-top: 60px;">
+        <center>
+          <strong>
+            <p>Projeto Acadêmico</p>
+            <p style="font-style: italic;">Desenvolvido por: Danillo Guimarães</p>
+          </strong>
+        </center>
+      </div>
+    </footer>
+    {% endif %}
     {% endblock %}
