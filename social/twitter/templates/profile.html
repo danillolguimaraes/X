@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 {% if profile %}
 
@@ -11,12 +11,30 @@
       {% if tweets %}
       {% for tweet in tweets %}
       <div class="alert alert-dark" role="alert">
-        <strong>{{ tweet.body }}</strong><br />
-        <small class="text-muted">
-          ({{ tweet.created_at }}) por
-          @{{ tweet.user.username|lower }}
-        </small>
-      </div><br /><br />
+
+        <div class="container">
+          <div class="row">
+            <div class="col-1">
+              {% if profile.profile_image %}
+              <img src="{{ profile.profile_image.url }}" width="50" height="50" class="rounded-circle"
+                alt="{{ profile.user.username }}">
+
+              {% else %}
+              <img src="{% static 'images/default-profile.png' %}" width="50" height="50" class="rounded-circle"
+                alt="{{ profile.user.username }}">
+              {% endif %}
+            </div>
+            <div class="col-10">
+              <strong>{{ tweet.body }}</strong><br />
+              <small class="text-muted">
+                ({{ tweet.created_at }}) por
+                @{{ tweet.user.username|lower }}
+              </small>
+            </div>
+
+          </div>
+        </div>
+      </div>
       {% endfor %}
       {% endif %}
     </div>
@@ -25,7 +43,7 @@
       <br /><br /><br />
       <!--image perfil-->
       {% if profile.profile_image %}
-      <img src="{{ profile.profile_image.url }}">
+      <img src="{{ profile.profile_image.url }}" class="rounded-circle" width="200" height="200">
       {% endif %}
       <br /><br />
       <!--bootstra card-->

@@ -1,7 +1,16 @@
 from django import forms
-from .models import Tweet
+from .models import Tweet, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+# profile Extras Form
+class ProfilePicForm(forms.ModelForm):
+    profile_image = forms.ImageField(label="Foto de Perfil")
+
+    class Meta:
+        model = Profile
+        fields = ('profile_image', )
 
 class TweetForm(forms.ModelForm):
     body = forms.CharField(
@@ -51,3 +60,13 @@ class SignUpForm(UserCreationForm):
 
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Os dois campos de senha não correspondem.")
+        
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        user_id = self.instance.id  # Pega o id do usuário atual (se estiver logado)
+
+        # Verifica se já existe algum outro usuário com o mesmo nome de usuário, ignorando o usuário atual
+        if User.objects.filter(username=username).exclude(id=user_id).exists():
+            raise forms.ValidationError("Um usuário com este nome de usuário já existe.")
+        
+        return username
