@@ -1,0 +1,174 @@
+/* Estilos gerais para o body e html */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Estilos gerais para a página de perfil */
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* Manter formato circular */
+}
+
+.profile-img-container {
+  text-align: center;
+  margin: 0 auto;
+  /* Centraliza o conteúdo dentro do container */
+}
+
+.profile-card {
+  margin-bottom: 20px;
+  /* Adiciona espaçamento entre os cards */
+}
+
+.follow-button {
+  width: 100%;
+  /* Faz o botão ocupar toda a largura do seu container */
+}
+
+/* Estilos gerais para a imagem estática na página inicial */
+.x-center-container {
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.x-center {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos específicos para telas pequenas e médias */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  /* Ajustar o layout da foto do perfil e botões para telas pequenas e médias */
+  .center-mobile {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  /* Ajustar o layout dos cards de seguidores e seguidos para ocupar toda a largura */
+  .profile-card {
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+
+  /* Ajustar o botão de seguir/não seguir para ocupar toda a largura */
+  .follow-button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Ajustar o layout dos tweets */
+  .col-8 {
+    display: block;
+    width: 100%;
+  }
+
+  .tweet-section {
+    margin-top: 20px;
+  }
+
+  /* Ajustar o layout dentro de cada tweet para evitar sobreposição */
+  .tweet-content {
+    text-align: center;
+  }
+
+  .tweet-img {
+    display: block;
+    margin: 0 auto;
+    max-width: 70px;
+    height: auto;
+  }
+
+  .tweet-text {
+    margin-bottom: 10px;
+  }
+
+  /* Ajustar o layout da imagem estática para telas pequenas */
+  .x-center {
+    max-width: 90%;
+  }
+}
+
+/* Estilos para telas muito pequenas */
+@media screen and (max-width: 400px) {
+  .center-mobile {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .col-md-8,
+  .col-md-4 {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  /* Ajustar o layout das colunas para que fiquem empilhadas */
+  .col-1,
+  .col-10 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  .profile-card {
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+
+  .follow-button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .tweet-section {
+    margin-top: 20px;
+  }
+
+  .tweet-img-col {
+    text-align: center;
+  }
+
+  .tweet-img {
+    max-width: 70px;
+    height: auto;
+  }
+
+  .tweet-content {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  /* Ajustar o layout da imagem estática para telas muito pequenas */
+  .x-center {
+    max-width: 100%;
+  }
+}

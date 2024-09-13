@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Profile, Tweet
 from .forms import TweetForm, SignUpForm, ProfilePicForm
@@ -117,4 +117,18 @@ def update_user(request):
         return render(request, 'update_user.html', {'user_form':user_form, 'profile_form':profile_form})
     else:
         messages.success(request, ("Você precisa estar logado!"))
+        return redirect('home')
+    
+    #views like tweets
+
+def tweet_like(request, pk):
+    if request.user.is_authenticated:
+        tweet = get_object_or_404(Tweet, id=pk)
+        if tweet.likes.filter(id=request.user.id).exists():
+            tweet.likes.remove(request.user)  # Remove like se já existir
+        else:
+            tweet.likes.add(request.user)  # Adiciona like corretamente
+        return redirect(request.META.get("HTTP_REFERER"))  # O redirecionamento deve estar fora da condicional
+    else:
+        messages.error(request, "Você deve estar logado!")  # Corrigido "sucess" para "error"
         return redirect('home')
