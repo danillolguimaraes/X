@@ -78,7 +78,7 @@
           {% endif %}
           <br /><br />
           {% if profile.profile_bio %}
-          <p align="justify">{{ profile.profile_bio }}</p>
+          <p align="justify" style="padding: 10px;">{{ profile.profile_bio }}</p>
           {% endif %}
         </center>
         <br />
@@ -87,7 +87,7 @@
           <div class="card-body">
             <p class="card-text">
               {% for following in profile.follows.all %}
-              <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
+              &nbsp;<a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
               {% endfor %}
             </p>
           </div>
@@ -99,7 +99,17 @@
           <div class="card-body">
             <p class="card-text">
               {% for following in profile.followed_by.all %}
-              <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
+              <a href="{% url 'profile' following.user.id %}">@{{ following }}
+              </a>&nbsp;
+
+              {% if following in profile.follows.all %}
+              <a href="{% url 'unfollow' following.user.id %}"><i class="fa fa-user-minus small" style="color: gray;"
+                  title="Deixar de Seguir"></i></a>
+              {% else %}
+              <a href="{% url 'follow' following.user.id %}"><i class="fa fa-user-plus small" style="color: green;"
+                  title="Seguir"></i></a>
+              {% endif %}
+              <br />
               {% endfor %}
             </p>
           </div>

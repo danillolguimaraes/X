@@ -31,6 +31,37 @@ def profile_list(request):
     else:
         messages.success(request, ("Você deve estar logado para visualizar esta página..."))
         return redirect('home')
+    
+def unfollow(request, pk):
+    if request.user.is_authenticated:
+        # pegar o perfil unfollow deixar de seugir
+        profile = Profile.objects.get(user_id=pk)
+        # deixar de seguir o usuario na pagina do perfil
+        request.user.profile.follows.remove(profile)
+        # salvar nosso removido kkk
+        request.user.profile.save()
+        # retornar a mensagem
+        messages.success(request, (f"Você deixou de seguir com sucesso {profile.user.username}"))
+        return redirect(request.META.get("HTTP_REFERER"))  # O redirecionamento deve estar fora da condicional
+    else:
+        messages.success(request, ("Você deve estar logado para visualizar esta página..."))
+        return redirect('home')
+
+def follow(request, pk):
+    if request.user.is_authenticated:
+        # pegar o perfil unfollow deixar de seugir
+        profile = Profile.objects.get(user_id=pk)
+        # deixar de seguir o usuario na pagina do perfil
+        request.user.profile.follows.add(profile)
+        # salvar nosso removido kkk
+        request.user.profile.save()
+        # retornar a mensagem
+        messages.success(request, (f"Você seguiu com sucesso {profile.user.username}"))
+        return redirect(request.META.get("HTTP_REFERER"))  # O redirecionamento deve estar fora da condicional
+    else:
+        messages.success(request, ("Você deve estar logado para visualizar esta página..."))
+        return redirect('home') 
+
 
 
 def profile(request, pk):
