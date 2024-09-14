@@ -132,3 +132,11 @@ def tweet_like(request, pk):
     else:
         messages.error(request, "Você deve estar logado!")  # Corrigido "sucess" para "error"
         return redirect('home')
+
+def tweet_show(request, pk):
+    tweet = get_object_or_404(Tweet, id=pk)
+    if tweet:
+        return render(request, 'show_tweet.html', {'tweet': tweet})
+    else:
+        messages.error(request, "Tweet não existe!")
+        return redirect('home')

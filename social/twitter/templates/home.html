@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %} <!-- Esta linha deve ser adicionada -->
-{% block content %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
+{% block content %}
 {% if user.is_authenticated %}
 <div class="container text-center">
   <div class="row">
@@ -25,17 +24,21 @@
             <div class="col-10">
               <strong>{{ tweet.body }}</strong><br />
               <small class="text-muted">
-                ({{ tweet.created_at }}) por @{{ tweet.user.username|lower }}
-                - {{ tweet.number_of_likes }} Curtidas -
+                ({{ tweet.created_at }}) por
+                <a href="{% url 'profile' tweet.user.id %}"> @{{ tweet.user.username|lower }}</a>
+                &nbsp;
+                {{ tweet.number_of_likes }} Curtida -
                 {% if user in tweet.likes.all %}
                 <a href="{% url 'tweet_like' tweet.id %}">
-                  <i class="fa-solid fa-heart" title="Descurtir" style="color: red;"></i>
-                </a>
+                  <i class="fa-solid fa-heart" title="Descurtir" style="color: red;"></i></a>
                 {% else %}
                 <a href="{% url 'tweet_like' tweet.id %}">
-                  <i class="fa fa-heart-o" title="Curtir" style="color: red;"></i>
-                </a>
+                  <i class="fa fa-heart-o" title="Curtir" style="color: red;"></i></a>
                 {% endif %}
+                <strong>|</strong>
+                <a href="{% url 'tweet_show' tweet.id %}">
+                  <i class="fa-solid fa-share" title="Compartilhar" style="color: green;"></i></a>
+                </a>
               </small>
             </div>
           </div>
@@ -52,29 +55,40 @@
         <button type="submit" class="btn btn-secondary">Postar Tweet</button>
       </form>
       {% endif %}
+      <br /><br />
     </div>
   </div>
 </div>
 {% else %}
-<div class="container text-center">
+<div class="container text-center bg-visitante">
   <div class="row">
     <div class="col-12">
       <h1 style="font-family: impact;">
         <br />
-        Bem vindos ao X!
+        <h1 class="welcome">Bem vindos ao X!</h1>
       </h1>
+      <p class="welcome"><strong>Na luta pela Liberdade...</strong></p>
       <br />
-      <img src="{% static 'images/projectXTESTE.png' %}" class="x-center" alt="Imagen centro index">
+      <img src="{% static 'images/direito.png' %}" style="height: 200px; width: 200px;" class="x-center"
+        alt="Imagen centro index">
       <br />
     </div>
   </div>
 </div>
+
 <footer>
   <br /><br />
   <div style="margin-top: 60px;">
     <center>
       <strong>
-        <p>Projeto Acadêmico</p>
+        <p>"Ouviram do Ipiranga as margens plácidas<br />
+          De um povo heróico o brado retumbante,<br />
+          E o sol da liberdade em raios fúlgidos,<br />
+          Brilhou no céu da pátria nesse instante."<br />
+          (Hino Nacional Brasileiro)
+        </p><br /><br />
+        <p>"O X anunciou o fechamento do escritório no Brasil em 17 de agosto de 2024"</p>
+        <p>Projeto Acadêmico 13/09/2024 há mais de 28 dias banidos! </p>
         <p style="font-style: italic;">Desenvolvido por: Danillo Guimarães</p>
       </strong>
     </center>

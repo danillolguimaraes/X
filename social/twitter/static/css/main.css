@@ -172,3 +172,36 @@ body {
     max-width: 100%;
   }
 }
+
+/* Estilo para os links ativos na navbar */
+.navbar-nav .nav-link.active {
+  color: #ffffff !important;
+  /* Cor do texto quando ativo */
+  background-color: transparent !important;
+  /* Remove o fundo branco */
+  font-weight: bold;
+  /* Opcional: deixa o texto em negrito */
+}
+
+/* Estilo para os links ao passar o mouse */
+.navbar-nav .nav-link:hover {
+  color: #ffffff !important;
+  /* Cor do texto ao passar o mouse */
+  background-color: transparent !important;
+  /* Remove o fundo branco ao passar o mouse */
+}
+
+.bg-visitante {
+  margin-top: -30px;
+  background-image: url('/static/images/bg.png');
+  background-size: cover;
+  /* Opcional, ajusta a imagem ao tamanho do elemento */
+  background-position: center;
+  width: 100%;
+  border-radius: 30px;
+  /* Opcional, centraliza a imagem */
+}
+
+.welcome {
+  color: white;
+}

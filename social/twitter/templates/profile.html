@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% if profile %}
 
 <div class="container">
@@ -34,6 +33,10 @@
                 <a href="{% url 'tweet_like' tweet.id %}"><i class="fa fa-heart-o" title="Curtir"
                     style="color: red;"></i></a>
                 {% endif %}
+                <strong>|</strong>
+                <a href="{% url 'tweet_show' tweet.id %}">
+                  <i class="fa-solid fa-share" title="Compartilhar" style="color: green;"></i></a>
+                </a>
               </small>
             </div>
           </div>
@@ -54,8 +57,31 @@
           <img src="{% static 'images/default-profile.png' %}" class="profile-img rounded-circle">
           {% endif %}
         </div>
-        <br /><br />
+        <br />
         <!-- Bootstrap card: Seguindo -->
+        <center>
+          {% if profile.homepage_link %}
+          <a href="{{ profile.homepage_link }}" title="Website" target="new">
+            <i class="fas fa-globe" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.facebook_link %}
+          <a href="{{ profile.facebook_link }}" title="Facebook" target="new">
+            <i class="fab fa-facebook" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.instagram_link %}
+          <a href="{{ profile.instagram_link }}" title="Instagram" target="new">
+            <i class="fab fa-instagram" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.linkedin_link %}
+          <a href="{{ profile.linkedin_link }}" title="Linkedin" target="new">
+            <i class="fab fa-linkedin" style="color: gray;"></i></a>
+          {% endif %}
+          <br /><br />
+          {% if profile.profile_bio %}
+          <p align="justify">{{ profile.profile_bio }}</p>
+          {% endif %}
+        </center>
+        <br />
         <div class="card profile-card">
           <h5 class="card-header"><strong>Seguindo</strong></h5>
           <div class="card-body">
@@ -99,6 +125,7 @@
     </div>
   </div>
 </div>
-
+<br />
+<br />
 {% endif %}
 {% endblock %}
