@@ -40,5 +40,5 @@ X APP para o projeto final de backend da EBAC.
    ```
    
 =======
-This academic project will include a structure similar to that of Twitter. <br>
-Contains Python, Django, and other dependencies contained in the requirements.txt file
+Este projeto acadêmico incluirá uma estrutura semelhante à do Twitter. <br>
+Contém Python, Django e outras dependências contidas no arquivo requirements.txt
