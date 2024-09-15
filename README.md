@@ -28,7 +28,7 @@ X APP para o projeto final de backend da EBAC.
 
    ```shell
    cd social
-   pip install requirements.txt 
+   pip install -r requirements.txt
   
    ```
 
