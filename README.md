@@ -6,13 +6,9 @@ X APP para o projeto final de backend da EBAC.
 
 ```
    Python==3.8.0
-   asgiref==3.8.1
-   backports.zoneinfo==0.2.1
    Django==4.1.4
    pillow==10.4.0
-   sqlparse==0.5.1
-   typing-extensions==4.12.2
-   tzdata==2024.1
+
 
 ```
 
