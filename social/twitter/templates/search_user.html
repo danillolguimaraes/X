@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Procurar Usuários!</h1>
+<br />
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="input" class="form-control" placeholder="Procurar Usuários" name="search_user">
+  <br /> <br />
+
+  <button type="submit" class="btn btn-secondary">Procurar Usuários</button>
+</form>
+<br /> <br />
+
+{% if search %}
+<h3>Sua pesquisa: {{ search }}</h3><br />
+{% endif %}
+
+{% if searched %}
+{% for result in searched %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      {% if result.profile.profile_image %}
+      <img src="{{ result.profile.profile_image.url }}" width="200" height="200" class="img-fluid rounded-start"
+        alt="{{ result.profile.user.username }}">
+      {% else %}
+      <img src="{% static 'images/default-profile.png' %}" class="img-fluid rounded-start" alt="Profile Image">
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Usuário: {{ result.profile.user.username }}</h5>
+        <p class="card-text">
+          <a href="{% url 'profile' result.profile.user.id %}">@{{ result.profile.user.username|lower}}</a>
+        </p>
+        <br /><br />
+        <p class="card-text"><small class="text-body-secondary">Última Atualização:
+            {{ result.profile.date_modified }}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+{% endfor %}
+{% else %}
+Desculpe, nenhum resultado encontrado para <strong>{{ search }}</strong>, tente novamente!
+{% endif %}
+
+{% endif %}
+{% endblock %}
