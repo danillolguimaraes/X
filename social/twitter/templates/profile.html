@@ -1,76 +1,131 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 {% if profile %}
 
-<div class="container text-center">
+<div class="container">
   <div class="row">
-    <div class="col-8">
-      <h1>{{ profile.user.username }}'s' Perfil</h1>
+    <div class="col-md-8">
+      <h1>{{ profile.user.username }}'s Perfil</h1>
       <br />
       {% if tweets %}
       {% for tweet in tweets %}
       <div class="alert alert-dark" role="alert">
-        <strong>{{ tweet.body }}</strong><br />
-        <small class="text-muted">
-          ({{ tweet.created_at }}) por
-          @{{ tweet.user.username }}
-        </small>
-      </div><br /><br />
+        <div class="container">
+          <div class="row">
+            <div class="col-1">
+              {% if profile.profile_image %}
+              <img src="{{ profile.profile_image.url }}" width="50" height="50" class="rounded-circle"
+                alt="{{ profile.user.username }}">
+              {% else %}
+              <img src="{% static 'images/default-profile.png' %}" width="50" height="50" class="rounded-circle"
+                alt="{{ profile.user.username }}">
+              {% endif %}
+            </div>
+            <div class="col-11">
+              <strong>{{ tweet.body }}</strong><br />
+              <small class="text-muted">
+                ({{ tweet.created_at }}) por @{{ tweet.user.username|lower }} - {{ tweet.number_of_likes }} Curtidas -
+                {% if user in tweet.likes.all %}
+                <a href="{% url 'tweet_like' tweet.id %}"><i class="fa-solid fa-heart" title="Descurtir"
+                    style="color: red;"></i></a>
+                {% else %}
+                <a href="{% url 'tweet_like' tweet.id %}"><i class="fa fa-heart-o" title="Curtir"
+                    style="color: red;"></i></a>
+                {% endif %}
+                <strong>|</strong>
+                <a href="{% url 'tweet_show' tweet.id %}">
+                  <i class="fa-solid fa-share" title="Compartilhar" style="color: green;"></i></a>
+                </a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
       {% endfor %}
       {% endif %}
     </div>
 
-    <div class="col-4">
-      <br /><br /><br />
-      <!--bootstra card-->
-      <div class="card">
-        <h5 class="card-header"><strong>Seguindo</strong></h5>
-        <div class="card-body">
-          <p class="card-text">
-            <!--seguindo-->
-            {% for following in profile.follows.all %}
-            <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
-            {% endfor %}
-          </p>
+    <div class="col-md-4">
+      <div class="center-mobile">
+        <!-- Imagem de perfil -->
+        <div class="text-center">
+          <br /><br /><br />
+          {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" class="profile-img rounded-circle">
+          {% else %}
+          <img src="{% static 'images/default-profile.png' %}" class="profile-img rounded-circle">
+          {% endif %}
         </div>
-      </div>
-      <!--bootstrap card-->
-      <br /> <br />
-
-      <!--bootstrap card-->
-      <div class="card">
-        <h5 class="card-header"><strong>Seguido por</strong></h5>
-        <div class="card-body">
-          <p class="card-text">
-            <!--seguido por-->
-            {% for following in profile.followed_by.all %}
-            <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
-            {% endfor %}
-          </p>
+        <br />
+        <!-- Bootstrap card: Seguindo -->
+        <center>
+          {% if profile.homepage_link %}
+          <a href="{{ profile.homepage_link }}" title="Website" target="new">
+            <i class="fas fa-globe" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.facebook_link %}
+          <a href="{{ profile.facebook_link }}" title="Facebook" target="new">
+            <i class="fab fa-facebook" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.instagram_link %}
+          <a href="{{ profile.instagram_link }}" title="Instagram" target="new">
+            <i class="fab fa-instagram" style="color: gray;"></i></a>&nbsp;
+          {% endif %}
+          {% if profile.linkedin_link %}
+          <a href="{{ profile.linkedin_link }}" title="Linkedin" target="new">
+            <i class="fab fa-linkedin" style="color: gray;"></i></a>
+          {% endif %}
+          <br /><br />
+          {% if profile.profile_bio %}
+          <p align="justify">{{ profile.profile_bio }}</p>
+          {% endif %}
+        </center>
+        <br />
+        <div class="card profile-card">
+          <h5 class="card-header"><strong>Seguindo</strong></h5>
+          <div class="card-body">
+            <p class="card-text">
+              {% for following in profile.follows.all %}
+              <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
+              {% endfor %}
+            </p>
+          </div>
         </div>
-      </div>
-      <br />
-
-      <!--seguir e deixar de seguir-->
-      <form method="POST">
-        {% csrf_token %}
-        {% if profile in user.profile.follows.all %}
-        <button class="btn btn-outline-danger" name="follow" value="unfollow" type="submit">Deixar de Seguir
-          @{{profile.user.username|lower}}</button>
-        {% else %}
-        <button class="btn btn-outline-success" name="follow" value="follow" type="submit">Seguir
-          @{{profile.user.username|lower}}</button>
+        <br /><br />
+        <!-- Bootstrap card: Seguido por -->
+        <div class="card profile-card">
+          <h5 class="card-header"><strong>Seguido por</strong></h5>
+          <div class="card-body">
+            <p class="card-text">
+              {% for following in profile.followed_by.all %}
+              <a href="{% url 'profile' following.user.id %}">@{{ following }}</a><br />
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+        <br />
+        <!-- Seguir e deixar de seguir -->
+        <form method="POST">
+          {% csrf_token %}
+          {% if profile in user.profile.follows.all %}
+          <button class="btn btn-outline-danger follow-button" name="follow" value="unfollow" type="submit">Deixar de
+            Seguir @{{profile.user.username|lower}}</button>
+          {% else %}
+          <button class="btn btn-outline-success follow-button" name="follow" value="follow" type="submit">Seguir
+            @{{profile.user.username|lower}}</button>
+          {% endif %}
+        </form>
+        <br />
+        <!-- Checar o usuário correto (logado) -->
+        {% if request.user.id == profile.user.id %}
+        <a href="{% url 'update_user' %}" class="btn btn-outline-secondary follow-button">Atualizar Perfil</a>
         {% endif %}
-
-      </form>
-      <br />
-
-
-    </div><!--col-4-->
-
+      </div>
+    </div>
   </div>
 </div>
-
+<br />
+<br />
 {% endif %}
 {% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %} <!-- Esta linha deve ser adicionada -->
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Compartilhar Tweet!</h1>
+      <br />
+      <div class="alert alert-dark" role="alert">
+        <div class="container">
+          <div class="row">
+            <div class="col-1">
+              {% if tweet.user.profile.profile_image %}
+              <img src="{{ tweet.user.profile.profile_image.url }}" width="50" height="50" class="rounded-circle"
+                alt="{{ tweet.user.username }}">
+              {% else %}
+              <img src="{% static 'images/default-profile.png' %}" width="50" height="50" class="rounded-circle"
+                alt="{{ tweet.user.username }}">
+              {% endif %}
+            </div>
+            <div class="col-10">
+              <strong>{{ tweet.body }}</strong><br />
+              <small class="text-muted">
+                ({{ tweet.created_at }}) por
+                <a href="{% url 'profile' tweet.user.id %}"> @{{ tweet.user.username|lower }}</a>
+                - {{ tweet.number_of_likes }} Curtidas -
+                {% if user in tweet.likes.all %}
+                <a href="{% url 'tweet_like' tweet.id %}">
+                  <i class="fa-solid fa-heart" title="Descurtir" style="color: red;"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'tweet_like' tweet.id %}">
+                  <i class="fa fa-heart-o" title="Curtir" style="color: red;"></i>
+                </a>
+                {% endif %}
+              </small>
+              <div class="dropdown">
+                <br />
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="shareDropdown"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  Compartilhar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="shareDropdown">
+                  <li>
+                    <!-- Compartilhar no WhatsApp -->
+                    <a class="dropdown-item" href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}"
+                      target="_blank"
+                      style="background-color: rgb(174, 241, 185); color: black; text-decoration: none; padding: 10px; display: inline-block; width: 100%; text-align: center; transition: background-color 0.3s, color 0.3s; position: relative; overflow: hidden;"
+                      onmouseover="this.style.backgroundColor='rgb(100, 160, 80)'; this.style.color='white'; this.querySelector('i').style.transform='rotate(360deg)'; this.querySelector('i').style.color='white';"
+                      onmouseout="this.style.backgroundColor='rgb(174, 241, 185)'; this.style.color='black'; this.querySelector('i').style.transform='rotate(0deg)'; this.querySelector('i').style.color='black';"
+                      title="Compartilhar no WhatsApp">
+                      <i class="fab fa-whatsapp" style="transition: transform 0.3s, color 0.3s;"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <!-- Compartilhar no Facebook -->
+                    <a class="dropdown-item"
+                      href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                      target="_blank"
+                      style="background-color: rgb(160, 196, 250); color: black; text-decoration: none; padding: 10px; display: inline-block; width: 100%; text-align: center; transition: background-color 0.3s, color 0.3s; position: relative; overflow: hidden;"
+                      onmouseover="this.style.backgroundColor='rgb(100, 140, 230)'; this.style.color='white'; this.querySelector('i').style.transform='rotate(360deg)'; this.querySelector('i').style.color='white';"
+                      onmouseout="this.style.backgroundColor='rgb(160, 196, 250)'; this.style.color='black'; this.querySelector('i').style.transform='rotate(0deg)'; this.querySelector('i').style.color='black';"
+                      title="Compartilhar no Facebook">
+                      <i class="fab fa-facebook" style="transition: transform 0.3s, color 0.3s;"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div><!--dropdown compartilhamento-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <br /><br /><br />
+      {% if form %}
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-secondary">Postar Tweet</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="font-family: impact;">
+        <br />
+        Bem vindos ao X!
+      </h1>
+      <br />
+      <img src="{% static 'images/projectXTESTE.png' %}" class="x-center" alt="Imagen centro index">
+      <br />
+    </div>
+  </div>
+</div>
+<footer>
+  <br /><br />
+  <div style="margin-top: 60px;">
+    <center>
+      <strong>
+        <p>Projeto Acadêmico</p>
+        <p style="font-style: italic;">Desenvolvido por: Danillo Guimarães</p>
+      </strong>
+    </center>
+  </div>
+</footer>
+{% endif %}
+{% endblock %}
