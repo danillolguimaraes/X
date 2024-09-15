@@ -1,0 +1,90 @@
+algorithms==0.1.4
+asgiref==3.8.1
+asttokens @ file:///opt/conda/conda-bld/asttokens_1646925590279/work
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+backports.functools-lru-cache==2.0.0
+beautifulsoup4==4.12.3
+black==24.4.2
+Brotli==1.1.0
+certifi==2024.6.2
+cffi @ file:///D:/bld/cffi_1696001739918/work
+charset-normalizer==3.3.2
+click==8.1.7
+colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+comm @ file:///C:/b/abs_67a8058udb/croot/comm_1709322909844/work
+contourpy==1.2.1
+cssselect2==0.2.1
+cycler==0.12.1
+debugpy @ file:///C:/b/abs_c0y1fjipt2/croot/debugpy_1690906864587/work
+decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
+defusedxml==0.7.1
+Django==4.2.13
+exceptiongroup @ file:///C:/b/abs_c5h1o1_b5b/croot/exceptiongroup_1706031441653/work
+executing @ file:///opt/conda/conda-bld/executing_1646925071911/work
+factory-boy==3.3.0
+Faker==26.0.0
+fonttools @ file:///D:/bld/fonttools_1717209304342/work
+fpdf2==2.7.9
+html5lib @ file:///home/conda/feedstock_root/build_artifacts/html5lib_1592930327044/work
+idna==3.7
+importlib-metadata @ file:///C:/b/abs_c1egths604/croot/importlib_metadata-suite_1704813568388/work
+importlib_resources==6.4.0
+iniconfig==2.0.0
+ipykernel @ file:///C:/b/abs_c2u94kxcy6/croot/ipykernel_1705933907920/work
+ipython @ file:///C:/b/abs_e5729i179y/croot/ipython_1694181400005/work
+jedi @ file:///C:/ci/jedi_1644315428289/work
+Jinja2==3.1.4
+jupyter_client @ file:///C:/b/abs_a6h3c8hfdq/croot/jupyter_client_1699455939372/work
+jupyter_core @ file:///C:/b/abs_c769pbqg9b/croot/jupyter_core_1698937367513/work
+kiwisolver==1.4.5
+Markdown==3.6
+MarkupSafe==2.1.5
+matplotlib==3.9.0
+matplotlib-inline @ file:///C:/ci/matplotlib-inline_1661915841596/work
+munkres==1.1.4
+mypy-extensions==1.0.0
+nest-asyncio @ file:///C:/b/abs_65d6lblmoi/croot/nest-asyncio_1708532721305/work
+numpy==1.26.4
+packaging @ file:///C:/b/abs_cc1h2xfosn/croot/packaging_1710807447479/work
+pandas==2.2.2
+parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
+pathspec==0.12.1
+pdf_reports==0.3.7
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+pillow @ file:///D:/bld/pillow_1712154573692/work
+platformdirs @ file:///C:/b/abs_b6z_yqw_ii/croot/platformdirs_1692205479426/work
+pluggy==1.5.0
+prompt-toolkit @ file:///C:/b/abs_68uwr58ed1/croot/prompt-toolkit_1704404394082/work
+psutil @ file:///C:/Windows/Temp/abs_b2c2fd7f-9fd5-4756-95ea-8aed74d0039flsd9qufz/croots/recipe/psutil_1656431277748/work
+pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1711811537435/work
+pydyf @ file:///home/conda/feedstock_root/build_artifacts/pydyf_1714393351946/work
+Pygments @ file:///C:/b/abs_fay9dpq4n_/croot/pygments_1684279990574/work
+pyparsing==3.1.2
+pyphen @ file:///home/conda/feedstock_root/build_artifacts/pyphen_1713947734595/work
+pypugjs==5.11.0
+pytest==8.2.2
+pytest-django==4.8.0
+python-dateutil @ file:///C:/b/abs_3au_koqnbs/croot/python-dateutil_1716495777160/work
+pytz==2024.1
+pywin32==305.1
+pyzmq @ file:///C:/b/abs_89aq69t0up/croot/pyzmq_1705605705281/work
+requests==2.32.3
+seaborn==0.13.2
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+soupsieve==2.5
+sqlparse==0.5.0
+stack-data @ file:///opt/conda/conda-bld/stack_data_1646927590127/work
+tinycss2 @ file:///home/conda/feedstock_root/build_artifacts/tinycss2_1713974937325/work
+tomli==2.0.1
+tornado @ file:///C:/b/abs_0cbrstidzg/croot/tornado_1696937003724/work
+traitlets @ file:///C:/b/abs_bfsnoxl4pq/croot/traitlets_1718227069245/work
+typing_extensions @ file:///C:/b/abs_0as9mdbkfl/croot/typing_extensions_1715268906610/work
+tzdata==2024.1
+unicodedata2 @ file:///D:/bld/unicodedata2_1695847967701/work
+urllib3==2.2.1
+wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+weasyprint @ file:///home/conda/feedstock_root/build_artifacts/weasyprint_1717528831111/work/weasyprint-62.2-py3-none-any.whl#sha256=6fd84e9f55ac239c5657845eae117fd43916c3c5986fe98f69ea13fdab8ec9ad
+webencodings @ file:///home/conda/feedstock_root/build_artifacts/webencodings_1694681268211/work
+zipp @ file:///C:/b/abs_b0beoc27oa/croot/zipp_1704206963359/work
+zopfli==0.2.3
