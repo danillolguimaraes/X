@@ -25,7 +25,17 @@
           <a class="nav-link {% if request.resolver_match.url_name == 'logout' %}active{% endif %}"
             href="{% url 'logout' %}">Sair</a>
         </li>
-        {% else %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </a>
+          <ul class="dropdown-menu bg-dark">
+            <li><a class="nav-link {% if request.resolver_match.url_name == 'search' %}active{% endif %}"
+                href="{% url 'search' %}">Procurar Tweet</a></li>
+            <li><a class="nav-link {% if request.resolver_match.url_name == 'search_user' %}active{% endif %}"
+                href="{% url 'search_user' %}">Procurar Usuário</a></li>
+          </ul>
+          {% else %}
         <li class="nav-item">
           <a class="nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}"
             href="{% url 'register' %}">Registro</a>
