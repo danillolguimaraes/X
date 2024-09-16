@@ -7,7 +7,6 @@ X APP para o projeto final de backend da EBAC.
 ```
    Python==3.8.0
    Django==4.1.4
-   pillow==10.4.0
 
 
 ```
